@@ -6,13 +6,15 @@ export default class Detail extends Component {
         super(props);
         this.props = props;
     }
+    
     render() {
-        return (<div>
-            <Header title={this.props.title} />
+        return (<div className="detail">
+            <Header title={this.props.detail.title} />
             <div>
-                <p>Rating: {this.props.rating}</p>
+                <p>Rating: {this.props.detail.rating}</p>
+                <p>{this.props.detail.tags.join ( " / ")}</p>
             </div>
-            <button onClick={()=>{console.log ("back! back")}}/>
+            <button onClick={this.props.onClick}>Close</button>
         </div>
         )
     }
