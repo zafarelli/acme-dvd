@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Detail from '../screens/Detail'
 
 export default class Dvd extends Component {
     constructor (props){
@@ -6,9 +7,13 @@ export default class Dvd extends Component {
       this.props = props
     }
   
+    onClick(){
+        
+    }
+
     render(){
       return (
-        <div className="dvd" onClick={()=>{console.log ("list click", this.props.dvd.title, this.props.dvd.tags)}}>
+        <div className="dvdlist" onClick={this.onClick}>
           <p>{this.props.dvd.title}</p>
         </div>
       );

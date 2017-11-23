@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Header from '../components/Header'
 
-export default class Detail {
+export default class Detail extends Component {
     constructor(props) {
         super(props);
         this.props = props;
