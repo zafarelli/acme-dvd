@@ -10,7 +10,7 @@ export default class DvdList extends Component {
     render(){
       return (
         <div className="dvdlist" onClick={this.props.onClick.bind(this)}>
-          <p>{this.props.dvd.title}</p>
+          <p>{this.props.dvd.title} ({this.props.dvd.rating})</p>
         </div>
       );
     }

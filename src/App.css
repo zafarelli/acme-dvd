@@ -18,6 +18,10 @@
   margin:3px
 }
 
+p {
+  margin: 3px;
+}
+
 .detail{
   position: absolute;
   width:80%;
