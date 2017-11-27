@@ -10,10 +10,13 @@ export default class DetailRead extends Component {
 
     render() {
         console.log ("read", this.props)
+        const averageRating = _.reduce (this.props.detail.rating, (mem, r)=>{
+            return mem + r;
+        }, 0)
         return (<div className="detail">
             <Header title={this.props.detail.title} />
             <div>
-                <p>Rating: {this.props.detail.rating}</p>
+                <p>Rating: {this.props.detail.rating.join(" / ")}</p>
                 <p>{this.props.detail.tags.join(" / ")}</p>
             </div>
             <div>

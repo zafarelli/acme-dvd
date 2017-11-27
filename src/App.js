@@ -9,14 +9,14 @@ const _ = require('lodash')
 
 const data = {
   dvds:
-    [{ title: "Gangs of New York", rating: 5, tags: ["Action", "History"] },
-    { title: "Full Metal Jacket", rating: 5, tags: ["Action", "WW2"] },
-    { title: "Walking Dead S1", rating: 4, tags: ["Post Apoc", "Zombies"] },
-    { title: "Walking Dead S2", rating: 4, tags: ["Post Apoc", "Zombies"] },
-    { title: "Walk the Line", rating: 4, tags: ["Chick Flick", "Drama"] },
-    { title: "Operation Petticoat", rating: 5, tags: ["Comedy", "U Boat", "WW2", "Classic"] }
-
-    ]
+    [{ title: "Gangs of New York", rating: {"Jens":5, "Sabine":5}, tags: ["Action", "History"] },
+    { title: "Full Metal Jacket", rating: {"Jens":5, "Sabine":3}, tags: ["Action", "WW2"] },
+    { title: "Walking Dead S1", rating: {"Jens":5, "Sabine":5}, tags: ["Post Apoc", "Zombies"] },
+    { title: "Walking Dead S2", rating: {"Jens":4, "Sabine":5}, tags: ["Post Apoc", "Zombies"] },
+    { title: "Walk the Line", rating: {"Jens":4, "Sabine":4}, tags: ["Chick Flick", "Drama"] },
+    { title: "Operation Petticoat", rating: {"Jens":4, "Sabine":5}, tags: ["Comedy", "U Boat", "WW2", "Classic"] }
+    ],
+    users:{"Jens":{name:"Jens"}, "Sabine":{name:"Sabine"}}
 }
 
 
