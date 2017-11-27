@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header'
+const _ = require('lodash')
 
 export default class DetailRead extends Component {
     constructor(props) {
@@ -10,13 +11,14 @@ export default class DetailRead extends Component {
 
     render() {
         console.log ("read", this.props)
-        const averageRating = _.reduce (this.props.detail.rating, (mem, r)=>{
-            return mem + r;
-        }, 0)
+        const rating = _.reduce (this.props.detail.rating, (mem,r, key)=>{
+            mem += " " + key + ": " + r
+            return mem
+        }, "")
         return (<div className="detail">
             <Header title={this.props.detail.title} />
             <div>
-                <p>Rating: {this.props.detail.rating.join(" / ")}</p>
+                <p>Rating: {rating}</p>
                 <p>{this.props.detail.tags.join(" / ")}</p>
             </div>
             <div>
