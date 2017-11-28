@@ -11,7 +11,7 @@ export default class DetailEdit extends Component {
 
     onRadioStatusChange(e, user) {
         this.props.detail.rating[user] = parseInt(e.target.value, 10)
-        const r = this.props.detail.rating[user]
+    //    const r = this.props.detail.rating[user]
       //  r = parseInt(e.target.value, 10)
 
         this.setState({ selectedRating: parseInt(e.target.value, 10) });
