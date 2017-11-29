@@ -11,30 +11,28 @@ export default class DetailEdit extends Component {
 
     onRadioStatusChange(e, user) {
         this.props.detail.rating[user] = parseInt(e.target.value, 10)
-    //    const r = this.props.detail.rating[user]
+        //const r = this.props.detail.rating[user]
+        const r = this.state.selectedRating
+        r[user] = parseInt(e.target.value, 10);
       //  r = parseInt(e.target.value, 10)
-
-        this.setState({ selectedRating: parseInt(e.target.value, 10) });
+console.log ("change", r)
+        this.setState({ selectedRating: r });
     }
 
 
     render() {
-
         const ratingCheckBoxes = [];
-
-console.log (this.state)
         _.reduce(this.props.detail.rating, (mem, key, user) => {
             ratingCheckBoxes.push(<label key={user+'label'}>{user}</label>)
             for (let i = 1; i < 6; i++) {
-                
                 const id = 'rating' + user + i;
                 ratingCheckBoxes.push(
-                    <label key={user + i}>
+                    <label key={id}>
                         <input
                             key={id}
                             type='radio'
                             id={id}
-                            name='rating'
+                            name={'rating' +user + i}
                             checked={this.state.selectedRating[user] === i}
                             value={i}
                             onChange={(e) => { this.onRadioStatusChange(e, user) }} />
@@ -44,7 +42,7 @@ console.log (this.state)
             ratingCheckBoxes.push (<br key={user+'br'}/>)
         }, [])
 
-
+console.log ("render detailedit", this.state)
 
         return (<div className="detail">
             <Header title={this.props.detail.title} />
