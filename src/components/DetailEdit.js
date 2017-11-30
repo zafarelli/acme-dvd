@@ -11,19 +11,20 @@ export default class DetailEdit extends Component {
 
     onRadioStatusChange(e, user) {
         this.props.detail.rating[user] = parseInt(e.target.value, 10)
-        //const r = this.props.detail.rating[user]
+        // todo neuen User auslesen
         const r = this.state.selectedRating
         r[user] = parseInt(e.target.value, 10);
-      //  r = parseInt(e.target.value, 10)
-console.log ("change", r)
         this.setState({ selectedRating: r });
     }
 
+    onUserAdded(){
+        this.setState ({newUser:true});
+    }
 
     render() {
         const ratingCheckBoxes = [];
         _.reduce(this.props.detail.rating, (mem, key, user) => {
-            ratingCheckBoxes.push(<label key={user+'label'}>{user}</label>)
+            ratingCheckBoxes.push(<label key={user+key+'label'}>{user}</label>)
             for (let i = 1; i < 6; i++) {
                 const id = 'rating' + user + i;
                 ratingCheckBoxes.push(
@@ -42,7 +43,26 @@ console.log ("change", r)
             ratingCheckBoxes.push (<br key={user+'br'}/>)
         }, [])
 
-console.log ("render detailedit", this.state)
+        // ggf. neuen User anbauen
+        if (this.state.newUser){
+            ratingCheckBoxes.push(<label key={'newUserlabel'}><input id='newUserNameInput'/></label>)
+            for (let i = 1; i < 6; i++) {
+                const id = 'ratingNewUser';
+                ratingCheckBoxes.push(
+                    <label key={id}>
+                        <input
+                            key={id}
+                            type='radio'
+                            id={id}
+                            name={id}
+                            //checked={this.state.selectedRating[user] === i}
+                            value={i}
+                            onChange={(e) => { this.onRadioStatusChange(e, "newUser") }} />
+                        {i}
+                    </label>)
+            }
+            ratingCheckBoxes.push (<br/>)
+        }
 
         return (<div className="detail">
             <Header title={this.props.detail.title} />
@@ -50,7 +70,7 @@ console.log ("render detailedit", this.state)
                 <p>{this.props.detail.tags.join(" / ")}</p>
             </div>
             <div>
-                <p>Rating</p>
+                <div><p style={{display:"inline"}}>Rating</p><button onClick={this.onUserAdded.bind(this)}>+</button></div>
                 <div style={{ margin: "0 auto", display: "inline-block" }}>
                     {ratingCheckBoxes}
                 </div>
