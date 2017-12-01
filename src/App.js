@@ -12,10 +12,13 @@ const data = {
     { title: "Full Metal Jacket", rating: { "Jens": 5, "Sabine": 3 }, tags: ["Action", "WW2"] },
     { title: "Walking Dead S1", rating: { "Jens": 5, "Sabine": 5 }, tags: ["Post Apoc", "Zombies"] },
     { title: "Walking Dead S2", rating: { "Jens": 4, "Sabine": 5 }, tags: ["Post Apoc", "Zombies"] },
-    { title: "Walk the Line", rating: { "Jens": 4, "Sabine": 4, "Leon":3 }, tags: ["Chick Flick", "Drama"] },
+    { title: "Walk the Line", rating: { "Jens": 4, "Sabine": 4, "Leon": 3 }, tags: ["Chick Flick", "Drama"] },
     { title: "Operation Petticoat", rating: { "Jens": 4, "Sabine": 5 }, tags: ["Comedy", "U Boat", "WW2", "Classic"] }
     ],
-  users: [{ "Jens": { name: "Jens" }, "Sabine": { name: "Sabine" } }]
+  users: [
+    { name: "Jens" },
+    { name: "Sabine" },
+    { name: "Leon" }]
 }
 
 
@@ -52,8 +55,8 @@ class App extends Component {
 
     const detailView = this.state.detailIndex >= 0
       ? <Detail detail={this.state.dvds[this.state.detailIndex]}
+        users={this.state.users}
         detailFunctions={detailFunctions}
-      //     className="detailopening"
       />
       : null;
 

@@ -16,11 +16,11 @@ export default class Detail extends Component {
 
     render() {
 
-        
+        const p = this.props;
         const onClickEdit = () => {this.setState({ readOnly: false })}
 
-        const read = <DetailRead detail={this.props.detail} detailFunctions={this.props.detailFunctions} onClickEdit={onClickEdit.bind(this)}/>;
-        const edit = <DetailEdit detail={this.props.detail} detailFunctions={this.props.detailFunctions}/>;
+        const read = <DetailRead detail={p.detail} detailFunctions={p.detailFunctions} onClickEdit={onClickEdit.bind(this)}/>;
+        const edit = <DetailEdit detail={p.detail} users={p.users} detailFunctions={p.detailFunctions}/>;
     
         return this.state.readOnly
             ? read

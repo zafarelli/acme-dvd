@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header'
+import UserSelect from './UserSelect'
 const _ = require('lodash')
 
 export default class DetailEdit extends Component {
@@ -17,14 +18,25 @@ export default class DetailEdit extends Component {
         this.setState({ selectedRating: r });
     }
 
-    onUserAdded(){
-        this.setState ({newUser:true});
+    onUserAdded() {
+        this.setState({ newUser: true });
+    }
+
+    newUserAdded(e) {
+        console.log("hooray, new user", e.target)
+        this.setState({ newUser: false })
     }
 
     render() {
+        const userSelect = this.state.newUser
+            ? <UserSelect users={this.props.users} okFunction={this.newUserAdded.bind(this)} />
+            : null;
+
+
+
         const ratingCheckBoxes = [];
         _.reduce(this.props.detail.rating, (mem, key, user) => {
-            ratingCheckBoxes.push(<label key={user+key+'label'}>{user}</label>)
+            ratingCheckBoxes.push(<label key={user + key + 'label'}>{user}</label>)
             for (let i = 1; i < 6; i++) {
                 const id = 'rating' + user + i;
                 ratingCheckBoxes.push(
@@ -33,44 +45,24 @@ export default class DetailEdit extends Component {
                             key={id}
                             type='radio'
                             id={id}
-                            name={'rating' +user + i}
+                            name={id}
                             checked={this.state.selectedRating[user] === i}
                             value={i}
                             onChange={(e) => { this.onRadioStatusChange(e, user) }} />
                         {i}
                     </label>)
             }
-            ratingCheckBoxes.push (<br key={user+'br'}/>)
+            ratingCheckBoxes.push(<br key={user + 'br'} />)
         }, [])
-
-        // ggf. neuen User anbauen
-        if (this.state.newUser){
-            ratingCheckBoxes.push(<label key={'newUserlabel'}><input id='newUserNameInput'/></label>)
-            for (let i = 1; i < 6; i++) {
-                const id = 'ratingNewUser';
-                ratingCheckBoxes.push(
-                    <label key={id}>
-                        <input
-                            key={id}
-                            type='radio'
-                            id={id}
-                            name={id}
-                            //checked={this.state.selectedRating[user] === i}
-                            value={i}
-                            onChange={(e) => { this.onRadioStatusChange(e, "newUser") }} />
-                        {i}
-                    </label>)
-            }
-            ratingCheckBoxes.push (<br/>)
-        }
 
         return (<div className="detail">
             <Header title={this.props.detail.title} />
+            {userSelect}
             <div style={{ clear: "both" }}>
                 <p>{this.props.detail.tags.join(" / ")}</p>
             </div>
             <div>
-                <div><p style={{display:"inline"}}>Rating</p><button onClick={this.onUserAdded.bind(this)}>+</button></div>
+                <div><p style={{ display: "inline" }}>Rating</p><button onClick={this.onUserAdded.bind(this)}>+</button></div>
                 <div style={{ margin: "0 auto", display: "inline-block" }}>
                     {ratingCheckBoxes}
                 </div>

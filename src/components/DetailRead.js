@@ -19,9 +19,9 @@ export default class DetailRead extends Component {
         }, [])
         const namesEl = <div className="detailReadNames">{names}</div>
 
-        const ratings = _.reduce(this.props.detail.rating, (mem, r) => {
+        const ratings = _.reduce(this.props.detail.rating, (mem, r, key) => {
             mem.push(r)
-            mem.push(<br key={"rating" + r}></br>)
+            mem.push(<br key={"rating" + r + key}></br>)
             return mem
         }, [])
         const ratingEl = <div className="detailReadRatings">{ratings}</div>
